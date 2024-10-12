@@ -2,142 +2,206 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Портфолио NeuroSpaceX</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>ruSpamNS: Распознавание рекламы</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        /* Основные стили сайта */
         body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #1a1a3f, #005f99);
-            color: white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(120deg, #1e3c72, #2a5298);
+            color: #ffffff;
+            overflow-x: hidden;
         }
-        h1 {
-            font-size: 4em;
-            margin-bottom: 20px;
-            opacity: 0;
-            animation: fadeIn 2s forwards;
+
+        /* Адаптивные стили для мобильных устройств */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5em;
+            }
+
+            header p, .content-section h2 {
+                font-size: 1.5em;
+            }
+
+            .comparison-chart {
+                flex-direction: column;
+            }
+
+            .model {
+                margin: 15px 0;
+                width: 100px;
+                height: 100px;
+            }
+
+            .button-link {
+                padding: 10px 20px;
+                margin: 8px;
+                font-size: 0.9em;
+            }
         }
-        .nav-buttons {
-            margin: 20px 0;
-        }
-        .nav-buttons a {
-            text-decoration: none;
-            color: white;
-            padding: 10px 20px;
-            background-color: #0073e6;
-            border-radius: 25px;
-            margin: 0 10px;
-            transition: background 0.3s;
-            opacity: 0;
-            animation: fadeIn 2s forwards 0.5s;
-        }
-        .nav-buttons a:hover {
-            background-color: #005bb5;
-        }
-        .section {
-            display: none;
+
+        /* Стили для заголовка */
+        header {
             text-align: center;
-            opacity: 0;
-            animation: slideUp 1s forwards;
+            padding: 80px 20px;
+            background: rgba(0, 0, 0, 0.6);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
         }
-        .show-section {
-            display: block;
+
+        header h1 {
+            font-size: 3.5em;
+            margin: 0;
+            animation: fadeInDown 1.5s ease-in-out;
         }
-        .contacts {
+
+        header p {
+            font-size: 1.8em;
+            margin-top: 15px;
+            animation: fadeInDown 2s ease-in-out;
+        }
+
+        /* Стили для секций контента */
+        .content-section {
+            padding: 60px 20px;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.5);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            margin: 20px;
+            border-radius: 10px;
+        }
+
+        .content-section h2 {
+            font-size: 2.8em;
+            animation: fadeInUp 1.5s ease-in-out;
+        }
+
+        /* Сравнение моделей */
+        .comparison-chart {
             display: flex;
             justify-content: center;
-            margin-top: 50px;
-        }
-        .contacts a {
-            margin: 0 15px;
-            opacity: 0;
-            animation: fadeIn 2s forwards 1s;
-        }
-        .contacts img {
-            width: 50px;
-            height: 50px;
-            transition: transform 0.3s;
-        }
-        .contacts img:hover {
-            transform: scale(1.1);
+            margin: 40px 0;
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
+        .model {
+            width: 120px;
+            height: 120px;
+            margin: 0 25px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.15);
+            animation: pulse 2s infinite alternate;
+            transition: transform 0.3s, background 0.3s;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
         }
 
-        @keyframes slideUp {
-            from {
-                transform: translateY(20px);
-            }
-            to {
-                transform: translateY(0);
-            }
+        .model:hover {
+            background: #ff6f61;
+            transform: scale(1.2);
+        }
+
+        /* Стили для футера */
+        footer {
+            padding: 25px;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.85);
+            position: relative;
+            width: 100%;
+            box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.3);
+            color: #aaa;
+        }
+
+        /* Анимации */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            from { transform: scale(1); }
+            to { transform: scale(1.1); }
+        }
+
+        /* Кнопки-ссылки */
+        .button-link {
+            background-color: #ff6f61;
+            color: #fff;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background-color 0.3s, transform 0.3s;
+            margin: 10px;
+            display: inline-block;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .button-link:hover {
+            background-color: #e04b3d;
+            transform: scale(1.05);
         }
     </style>
 </head>
 <body>
-    <h1>NeuroSpaceX Portfolio</h1>
+    <!-- Заголовок сайта -->
+    <header>
+        <h1>ruSpam: Распознавание рекламы</h1>
+        <p>Модели ИИ, обученные на миллионах сообщений</p>
+    </header>
 
-    <div class="nav-buttons">
-        <a href="#about" onclick="showSection('about')">Обо мне</a>
-        <a href="#projects" onclick="showSection('projects')">Проекты</a>
-        <a href="#contacts" onclick="showSection('contacts')">Контакты</a>
-    </div>
-
-    <div id="about" class="section">
-        <h2>Обо мне</h2>
-        <p>Привет! Я NeuroSpaceX, разработчик, работающий с нейросетями и приложениями на Android и Python. Готов сделать на заказ простое приложение на Java или Kotlin, а также сайты с использованием Python, скрипты и Telegram-боты.</p>
-    </div>
-
-    <div id="projects" class="section">
-        <h2>Мои проекты</h2>
-        <p>
-            <a href="https://play.google.com/store/apps/details?id=com.totoshkus.converter" target="_blank">Конвертер</a><br>
-            <a href="https://t.me/ruSpamNS_bot" target="_blank">Телеграм-бот для фильтрации спама</a><br>
-            <a href="https://play.google.com/store/apps/details?id=com.totoshkus.weather" target="_blank">Приложение погоды</a>
-        </p>
-    </div>
-
-    <div id="contacts" class="section">
-        <h2>Контакты</h2>
-        <div class="contacts">
-            <a href="https://github.com/SpaceNeuroX" target="_blank">
-                <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub">
-            </a>
-            <a href="https://t.me/NeuroSpaceX" target="_blank">
-                <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram">
-            </a>
+    <!-- Секция с описанием моделей -->
+    <div class="content-section">
+        <h2>От ruSpamNS_v1 до ruSpamNS_v6</h2>
+        <div class="comparison-chart">
+            <div class="model" style="background: #1f8ef1;">ruSpamNS_v1</div>
+            <div class="model" style="background: #ff5733;">ruSpamNS_v6</div>
         </div>
+        <p>Наша последняя модель, ruSpamNS_v6, обученная на 2,5 миллиона сообщений, значительно превосходит предыдущую версию.</p>
     </div>
 
+    <!-- Секция с информацией об интеграции -->
+    <div class="content-section">
+        <h2>Лёгкая интеграция с ruSpamLib</h2>
+        <p>Используйте официальную библиотеку для работы с нашими моделями:</p>
+        <pre style="background-color: #333; color: #fff; padding: 15px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);">
+pip install ruSpam
+        </pre>
+        <p><a href="https://github.com/SpaceNeuroX/ruSpamLib" class="button-link">Посмотреть на GitHub</a> | <a href="https://huggingface.co/collections/NeuroSpaceX/ruspam-66db647237729f85ef53d806" class="button-link">Исследовать на Hugging Face</a></p>
+    </div>
+
+    <!-- Секция с информацией об официальном боте -->
+    <div class="content-section">
+        <h2>Официальный бот</h2>
+        <p>Используйте нашего официального бота для модерирования, работающего на последней модели:</p>
+        <p><a href="https://t.me/ruSpamNS_bot" class="button-link">Запустить бота на Telegram</a></p>
+        <p>Для технической поддержки пишите на: <a href="mailto:totoshkus@gmail.com" style="color: #ff6f61;">totoshkus@gmail.com</a></p>
+    </div>
+
+    <!-- Футер -->
+    <footer>
+        &copy; 2024 NeuroSpaceX | Все права защищены
+    </footer>
+
+    <!-- Скрипт для дополнительных анимаций -->
     <script>
-        function showSection(sectionId) {
-            document.querySelectorAll('.section').forEach(section => {
-                section.classList.remove('show-section');
-                section.style.opacity = '0';
+        // JavaScript для плавных эффектов наведения
+        document.querySelectorAll('.button-link').forEach(button => {
+            button.addEventListener('mouseenter', () => {
+                button.style.transform = 'scale(1.1)';
+                button.style.boxShadow = '0 10px 20px rgba(0, 0, 0, 0.5)';
             });
-            const section = document.getElementById(sectionId);
-            section.classList.add('show-section');
-            setTimeout(() => {
-                section.style.opacity = '1';
-            }, 50);
-        }
+            button.addEventListener('mouseleave', () => {
+                button.style.transform = 'scale(1)';
+                button.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.2)';
+            });
+        });
     </script>
 </body>
 </html>
