@@ -5,149 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ruSpamNS: Распознавание рекламы</title>
-    <style>
-        /* Основные стили сайта */
-        body {
-            margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(120deg, #1e3c72, #2a5298);
-            color: #ffffff;
-            overflow-x: hidden;
-        }
-
-        /* Адаптивные стили для мобильных устройств */
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 2.5em;
-            }
-
-            header p, .content-section h2 {
-                font-size: 1.5em;
-            }
-
-            .comparison-chart {
-                flex-direction: column;
-            }
-
-            .model {
-                margin: 15px 0;
-                width: 100px;
-                height: 100px;
-            }
-
-            .button-link {
-                padding: 10px 20px;
-                margin: 8px;
-                font-size: 0.9em;
-            }
-        }
-
-        /* Стили для заголовка */
-        header {
-            text-align: center;
-            padding: 80px 20px;
-            background: rgba(0, 0, 0, 0.6);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-        }
-
-        header h1 {
-            font-size: 3.5em;
-            margin: 0;
-            animation: fadeInDown 1.5s ease-in-out;
-        }
-
-        header p {
-            font-size: 1.8em;
-            margin-top: 15px;
-            animation: fadeInDown 2s ease-in-out;
-        }
-
-        /* Стили для секций контента */
-        .content-section {
-            padding: 60px 20px;
-            text-align: center;
-            background: rgba(0, 0, 0, 0.5);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-            margin: 20px;
-            border-radius: 10px;
-        }
-
-        .content-section h2 {
-            font-size: 2.8em;
-            animation: fadeInUp 1.5s ease-in-out;
-        }
-
-        /* Сравнение моделей */
-        .comparison-chart {
-            display: flex;
-            justify-content: center;
-            margin: 40px 0;
-        }
-
-        .model {
-            width: 120px;
-            height: 120px;
-            margin: 0 25px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: rgba(255, 255, 255, 0.15);
-            animation: pulse 2s infinite alternate;
-            transition: transform 0.3s, background 0.3s;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-        }
-
-        .model:hover {
-            background: #ff6f61;
-            transform: scale(1.2);
-        }
-
-        /* Стили для футера */
-        footer {
-            padding: 25px;
-            text-align: center;
-            background: rgba(0, 0, 0, 0.85);
-            position: relative;
-            width: 100%;
-            box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.3);
-            color: #aaa;
-        }
-
-        /* Анимации */
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-50px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(50px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes pulse {
-            from { transform: scale(1); }
-            to { transform: scale(1.1); }
-        }
-
-        /* Кнопки-ссылки */
-        .button-link {
-            background-color: #ff6f61;
-            color: #fff;
-            padding: 12px 25px;
-            text-decoration: none;
-            border-radius: 8px;
-            transition: background-color 0.3s, transform 0.3s;
-            margin: 10px;
-            display: inline-block;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .button-link:hover {
-            background-color: #e04b3d;
-            transform: scale(1.05);
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <!-- Заголовок сайта -->
@@ -160,8 +18,8 @@
     <div class="content-section">
         <h2>От ruSpamNS_v1 до ruSpamNS_v6</h2>
         <div class="comparison-chart">
-            <div class="model" style="background: #1f8ef1;">ruSpamNS_v1</div>
-            <div class="model" style="background: #ff5733;">ruSpamNS_v6</div>
+            <div class="model" style="background: #4682B4;">ruSpamNS_v1</div>
+            <div class="model" style="background: #FF4500;">ruSpamNS_v6</div>
         </div>
         <p>Наша последняя модель, ruSpamNS_v6, обученная на 2,5 миллиона сообщений, значительно превосходит предыдущую версию.</p>
     </div>
@@ -170,10 +28,15 @@
     <div class="content-section">
         <h2>Лёгкая интеграция с ruSpamLib</h2>
         <p>Используйте официальную библиотеку для работы с нашими моделями:</p>
-        <pre style="background-color: #333; color: #fff; padding: 15px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);">
-pip install ruSpam
-        </pre>
-        <p><a href="https://github.com/SpaceNeuroX/ruSpamLib" class="button-link">Посмотреть на GitHub</a> | <a href="https://huggingface.co/collections/NeuroSpaceX/ruspam-66db647237729f85ef53d806" class="button-link">Исследовать на Hugging Face</a></p>
+        <div class="command-section">
+            <pre class="install-command">pip install ruSpam</pre>
+            <button class="copy-button" onclick="copyToClipboard()">Скопировать</button>
+        </div>
+        <p>
+            <a href="https://github.com/SpaceNeuroX/ruSpamLib" class="button-link">Посмотреть на GitHub</a> 
+            | 
+            <a href="https://huggingface.co/collections/NeuroSpaceX/ruspam-66db647237729f85ef53d806" class="button-link">Исследовать на Hugging Face</a>
+        </p>
     </div>
 
     <!-- Секция с информацией об официальном боте -->
@@ -181,7 +44,7 @@ pip install ruSpam
         <h2>Официальный бот</h2>
         <p>Используйте нашего официального бота для модерирования, работающего на последней модели:</p>
         <p><a href="https://t.me/ruSpamNS_bot" class="button-link">Запустить бота на Telegram</a></p>
-        <p>Для технической поддержки пишите на: <a href="mailto:totoshkus@gmail.com" style="color: #ff6f61;">totoshkus@gmail.com</a></p>
+        <p>Для технической поддержки пишите на: <a href="mailto:totoshkus@gmail.com" style="color: #ff7f50;">totoshkus@gmail.com</a></p>
     </div>
 
     <!-- Футер -->
@@ -189,19 +52,6 @@ pip install ruSpam
         &copy; 2024 NeuroSpaceX | Все права защищены
     </footer>
 
-    <!-- Скрипт для дополнительных анимаций -->
-    <script>
-        // JavaScript для плавных эффектов наведения
-        document.querySelectorAll('.button-link').forEach(button => {
-            button.addEventListener('mouseenter', () => {
-                button.style.transform = 'scale(1.1)';
-                button.style.boxShadow = '0 10px 20px rgba(0, 0, 0, 0.5)';
-            });
-            button.addEventListener('mouseleave', () => {
-                button.style.transform = 'scale(1)';
-                button.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.2)';
-            });
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
