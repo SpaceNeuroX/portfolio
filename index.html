@@ -15,7 +15,6 @@
       --card-bg: #1a1a1a;
       --text: #fff;
     }
-    
     * {
       margin: 0;
       padding: 0;
@@ -23,7 +22,6 @@
       font-family: 'VT323', monospace;
       image-rendering: pixelated;
     }
-    
     body {
       background: var(--bg);
       color: var(--text);
@@ -33,20 +31,17 @@
         linear-gradient(to bottom, rgba(0, 255, 0, 0.1) 1px, transparent 1px);
       background-size: 10px 10px;
     }
-    
     .container {
       max-width: 1200px;
       margin: 0 auto;
       padding: 2rem;
     }
-    
     h1, h2, h3 {
       font-family: 'Press Start 2P', cursive;
       text-transform: uppercase;
       text-align: center;
     }
-    
-    /* Анимация глитча для элементов */
+    /* Анимация глитча */
     @keyframes pixel-glitch {
       0% { transform: translate(0, 0); }
       20% { transform: translate(-2px, 2px); }
@@ -55,45 +50,43 @@
       80% { transform: translate(2px, -2px); }
       100% { transform: translate(0, 0); }
     }
-    
-    /* Анимация мерцания для заголовков */
+    /* Мерцание заголовков */
     @keyframes pixel-flicker {
       0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
       20%, 24%, 55% { opacity: 0.4; }
     }
-    
-    /* Анимация для пиксельных уголков */
+    /* Анимация уголков */
     @keyframes corner-wiggle {
       0%, 100% { transform: translate(0, 0); }
       50% { transform: translate(2px, -2px); }
     }
-    
-    /* Анимация плавного появления для секции HERO */
+    /* Плавное появление */
     @keyframes heroIntro {
       from { opacity: 0; transform: scale(0.95); }
       to { opacity: 1; transform: scale(1); }
     }
-    
-    /* Анимация пульсации для иконок */
+    /* Пульсация иконок */
     @keyframes iconPulse {
       0% { transform: scale(1); filter: drop-shadow(0 0 5px var(--primary)); }
       50% { transform: scale(1.1); filter: drop-shadow(0 0 10px var(--secondary)); }
       100% { transform: scale(1); filter: drop-shadow(0 0 5px var(--primary)); }
     }
-    
+    /* Анимация для кнопок при наведении */
+    @keyframes btnHover {
+      from { transform: translateY(0); }
+      to { transform: translateY(-5px); }
+    }
     .pixel-border {
       border: 3px solid var(--primary);
       position: relative;
       box-shadow: 5px 5px 0 var(--secondary);
       transition: transform 0.2s, box-shadow 0.2s;
     }
-    
     .pixel-border:hover {
       transform: translate(-3px, -3px);
       box-shadow: 3px 3px 0 var(--secondary);
       animation: pixel-glitch 0.3s ease-in-out;
     }
-    
     .hero {
       min-height: 100vh;
       display: flex;
@@ -105,7 +98,6 @@
       gap: 1.5rem;
       animation: heroIntro 1s ease-out;
     }
-    
     .tech-icons {
       display: flex;
       gap: 1.5rem;
@@ -113,11 +105,9 @@
       font-size: 3rem;
       filter: drop-shadow(0 0 5px var(--primary));
     }
-    
     .tech-icons i:hover {
       animation: iconPulse 1.5s infinite;
     }
-    
     .social-links {
       display: flex;
       gap: 1rem;
@@ -125,7 +115,6 @@
       flex-wrap: wrap;
       justify-content: center;
     }
-    
     .social-link {
       padding: 1rem 1.5rem;
       border: 2px solid var(--primary);
@@ -135,32 +124,30 @@
       display: flex;
       align-items: center;
       gap: 0.5rem;
+      transition: background 0.3s, color 0.3s, transform 0.3s;
     }
-    
     .social-link:hover {
       background: var(--primary);
       color: var(--bg);
+      animation: btnHover 0.3s forwards;
     }
-    
     .skills-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 2rem;
       margin: 4rem 0;
     }
-    
     .project-card {
       background: var(--card-bg);
       padding: 2rem;
       border: 3px solid var(--primary);
       position: relative;
       transition: transform 0.2s;
+      overflow: hidden;
     }
-    
     .project-card:hover {
       transform: translateY(-5px);
     }
-    
     .project-card::before {
       content: '';
       position: absolute;
@@ -169,15 +156,14 @@
       right: 5px;
       bottom: 5px;
       border: 1px solid var(--secondary);
+      pointer-events: none;
     }
-    
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 2rem;
       margin-top: 3rem;
     }
-    
     .stat-box {
       text-align: center;
       padding: 2rem;
@@ -185,25 +171,21 @@
       background: var(--card-bg);
       position: relative;
     }
-    
     .stat-number {
       font-size: 3rem;
       font-family: 'Press Start 2P', cursive;
       color: var(--primary);
       text-shadow: 0 0 10px var(--primary);
     }
-    
     .stat-label {
       margin-top: 1rem;
       font-size: 1.2rem;
     }
-    
-    /* Анимация для scanlines */
+    /* Анимация scanlines */
     @keyframes scanline {
       0% { transform: translateY(-100%); }
       100% { transform: translateY(100%); }
     }
-    
     .scanlines {
       position: fixed;
       top: 0;
@@ -221,8 +203,7 @@
       pointer-events: none;
       z-index: 999;
     }
-    
-    /* Пиксельные уголки с анимацией */
+    /* Пиксельные уголки */
     .pixel-corner {
       position: absolute;
       width: 10px;
@@ -230,21 +211,21 @@
       background: var(--primary);
       animation: corner-wiggle 1s ease-in-out infinite;
     }
-    
     .pixel-corner-tl { top: -3px; left: -3px; }
     .pixel-corner-tr { top: -3px; right: -3px; }
     .pixel-corner-bl { bottom: -3px; left: -3px; }
     .pixel-corner-br { bottom: -3px; right: -3px; }
-    
     .hero h1 {
       animation: pixel-flicker 2s infinite;
     }
-    
+    /* Дополнительная адаптивность для телефонов */
     @media (max-width: 600px) {
+      .container { padding: 1rem; }
       h1 { font-size: 2.5rem; }
       h2 { font-size: 1.5rem; }
       .tech-icons { font-size: 2.5rem; }
       .social-link { padding: 0.8rem 1.2rem; }
+      .project-card, .stat-box { padding: 1.5rem; }
     }
   </style>
 </head>
@@ -265,16 +246,16 @@
       ▸ 99.5% Accuracy
     </p>
     <div class="social-links">
-      <a href="https://ru-spam.ru" class="social-link pixel-border">
+      <a href="https://ru-spam.ru" class="social-link pixel-border" data-aos="fade-up">
         <i class="fas fa-rocket"></i> Official Site
       </a>
-      <a href="https://t.me/ruSpamNS_bot" class="social-link pixel-border">
+      <a href="https://t.me/ruSpamNS_bot" class="social-link pixel-border" data-aos="fade-up" data-aos-delay="100">
         <i class="fab fa-telegram-plane"></i> Telegram Bot
       </a>
-      <a href="https://t.me/spaceneuro" class="social-link pixel-border">
+      <a href="https://t.me/spaceneuro" class="social-link pixel-border" data-aos="fade-up" data-aos-delay="200">
         <i class="fas fa-broadcast-tower"></i> News Channel
       </a>
-      <a href="https://t.me/Venuslaboratory" class="social-link pixel-border">
+      <a href="https://t.me/Venuslaboratory" class="social-link pixel-border" data-aos="fade-up" data-aos-delay="300">
         <i class="fas fa-users"></i> Community
       </a>
     </div>
@@ -284,7 +265,7 @@
   <section class="container" data-aos="fade-up">
     <h2 style="font-size: 2rem; margin-bottom: 3rem; color: var(--primary);">TECH STACK</h2>
     <div class="skills-grid">
-      <div class="project-card">
+      <div class="project-card" data-aos="flip-left">
         <div class="pixel-corner pixel-corner-tl"></div>
         <div class="pixel-corner pixel-corner-tr"></div>
         <div class="pixel-corner pixel-corner-bl"></div>
@@ -297,7 +278,7 @@
           <li>▸ Django Admin</li>
         </ul>
       </div>
-      <div class="project-card">
+      <div class="project-card" data-aos="flip-right">
         <div class="pixel-corner pixel-corner-tl"></div>
         <div class="pixel-corner pixel-corner-tr"></div>
         <div class="pixel-corner pixel-corner-bl"></div>
@@ -317,15 +298,15 @@
   <section class="container" data-aos="fade-up">
     <h2 style="font-size: 2rem; margin-bottom: 3rem; color: var(--primary);">LIVE STATS</h2>
     <div class="stats-grid">
-      <div class="stat-box pixel-border">
+      <div class="stat-box pixel-border" data-aos="zoom-in">
         <div class="stat-number">5M+</div>
         <div class="stat-label">Messages Analyzed</div>
       </div>
-      <div class="stat-box pixel-border">
+      <div class="stat-box pixel-border" data-aos="zoom-in" data-aos-delay="150">
         <div class="stat-number">99.5%</div>
         <div class="stat-label">Accuracy</div>
       </div>
-      <div class="stat-box pixel-border">
+      <div class="stat-box pixel-border" data-aos="zoom-in" data-aos-delay="300">
         <div class="stat-number">24/7</div>
         <div class="stat-label">Uptime</div>
       </div>
