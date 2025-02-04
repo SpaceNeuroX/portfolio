@@ -1,248 +1,344 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NeuroSpaceX | AI Anti-Spam</title>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
-        :root {
-            --primary: #00f7ff;
-            --secondary: #b145e9;
-            --bg: #0a0f24;
-            --card-bg: #1a1f35;
-            --text: #e0e7ff;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', sans-serif;
-        }
-
-        body {
-            background: var(--bg);
-            color: var(--text);
-            overflow-x: hidden;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        .glow {
-            text-shadow: 0 0 20px var(--primary);
-        }
-
-        .gradient-text {
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            position: relative;
-            border-bottom: 3px solid var(--card-bg);
-        }
-
-        .tech-icons {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            font-size: 2.5rem;
-            margin: 2rem 0;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 2rem;
-            margin-top: 3rem;
-            flex-wrap: wrap;
-        }
-
-        .social-link {
-            padding: 1rem 2rem;
-            border-radius: 30px;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            color: var(--bg);
-            text-decoration: none;
-            transition: transform 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .social-link:hover {
-            transform: translateY(-3px);
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 4rem 0;
-        }
-
-        .project-card {
-            background: var(--card-bg);
-            border-radius: 15px;
-            padding: 2rem;
-            transition: transform 0.3s;
-            border: 2px solid transparent;
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            border-image: linear-gradient(45deg, var(--primary), var(--secondary)) 1;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .stat-box {
-            text-align: center;
-            padding: 2rem;
-            border: 2px solid var(--primary);
-            border-radius: 15px;
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: bold;
-        }
-
-        #particles-js {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0px); }
-        }
-
-        .floating {
-            animation: float 3s ease-in-out infinite;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NeuroSpaceX | AI Anti-Spam</title>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <style>
+    :root {
+      --primary: #00ff00;
+      --secondary: #ff00ff;
+      --bg: #000;
+      --card-bg: #1a1a1a;
+      --text: #fff;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'VT323', monospace;
+      image-rendering: pixelated;
+    }
+    
+    body {
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      background-image: 
+        linear-gradient(to right, rgba(0, 255, 0, 0.1) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0, 255, 0, 0.1) 1px, transparent 1px);
+      background-size: 10px 10px;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    
+    h1, h2, h3 {
+      font-family: 'Press Start 2P', cursive;
+      text-transform: uppercase;
+      text-align: center;
+    }
+    
+    /* Анимация глитча для элементов */
+    @keyframes pixel-glitch {
+      0% { transform: translate(0, 0); }
+      20% { transform: translate(-2px, 2px); }
+      40% { transform: translate(2px, -2px); }
+      60% { transform: translate(-2px, 2px); }
+      80% { transform: translate(2px, -2px); }
+      100% { transform: translate(0, 0); }
+    }
+    
+    /* Анимация мерцания для заголовков */
+    @keyframes pixel-flicker {
+      0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+      20%, 24%, 55% { opacity: 0.4; }
+    }
+    
+    /* Анимация для пиксельных уголков */
+    @keyframes corner-wiggle {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(2px, -2px); }
+    }
+    
+    /* Анимация плавного появления для секции HERO */
+    @keyframes heroIntro {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    
+    /* Анимация пульсации для иконок */
+    @keyframes iconPulse {
+      0% { transform: scale(1); filter: drop-shadow(0 0 5px var(--primary)); }
+      50% { transform: scale(1.1); filter: drop-shadow(0 0 10px var(--secondary)); }
+      100% { transform: scale(1); filter: drop-shadow(0 0 5px var(--primary)); }
+    }
+    
+    .pixel-border {
+      border: 3px solid var(--primary);
+      position: relative;
+      box-shadow: 5px 5px 0 var(--secondary);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    
+    .pixel-border:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 3px 3px 0 var(--secondary);
+      animation: pixel-glitch 0.3s ease-in-out;
+    }
+    
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      border-bottom: 3px solid var(--primary);
+      text-align: center;
+      gap: 1.5rem;
+      animation: heroIntro 1s ease-out;
+    }
+    
+    .tech-icons {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      font-size: 3rem;
+      filter: drop-shadow(0 0 5px var(--primary));
+    }
+    
+    .tech-icons i:hover {
+      animation: iconPulse 1.5s infinite;
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    
+    .social-link {
+      padding: 1rem 1.5rem;
+      border: 2px solid var(--primary);
+      background: var(--card-bg);
+      color: var(--primary);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .social-link:hover {
+      background: var(--primary);
+      color: var(--bg);
+    }
+    
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 4rem 0;
+    }
+    
+    .project-card {
+      background: var(--card-bg);
+      padding: 2rem;
+      border: 3px solid var(--primary);
+      position: relative;
+      transition: transform 0.2s;
+    }
+    
+    .project-card:hover {
+      transform: translateY(-5px);
+    }
+    
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      right: 5px;
+      bottom: 5px;
+      border: 1px solid var(--secondary);
+    }
+    
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    
+    .stat-box {
+      text-align: center;
+      padding: 2rem;
+      border: 3px solid var(--primary);
+      background: var(--card-bg);
+      position: relative;
+    }
+    
+    .stat-number {
+      font-size: 3rem;
+      font-family: 'Press Start 2P', cursive;
+      color: var(--primary);
+      text-shadow: 0 0 10px var(--primary);
+    }
+    
+    .stat-label {
+      margin-top: 1rem;
+      font-size: 1.2rem;
+    }
+    
+    /* Анимация для scanlines */
+    @keyframes scanline {
+      0% { transform: translateY(-100%); }
+      100% { transform: translateY(100%); }
+    }
+    
+    .scanlines {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        to bottom,
+        transparent 50%,
+        rgba(0, 255, 0, 0.1) 51%,
+        transparent 51%
+      );
+      background-size: 100% 4px;
+      animation: scanline 4s linear infinite;
+      pointer-events: none;
+      z-index: 999;
+    }
+    
+    /* Пиксельные уголки с анимацией */
+    .pixel-corner {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: var(--primary);
+      animation: corner-wiggle 1s ease-in-out infinite;
+    }
+    
+    .pixel-corner-tl { top: -3px; left: -3px; }
+    .pixel-corner-tr { top: -3px; right: -3px; }
+    .pixel-corner-bl { bottom: -3px; left: -3px; }
+    .pixel-corner-br { bottom: -3px; right: -3px; }
+    
+    .hero h1 {
+      animation: pixel-flicker 2s infinite;
+    }
+    
+    @media (max-width: 600px) {
+      h1 { font-size: 2.5rem; }
+      h2 { font-size: 1.5rem; }
+      .tech-icons { font-size: 2.5rem; }
+      .social-link { padding: 0.8rem 1.2rem; }
+    }
+  </style>
 </head>
 <body>
-    <div id="particles-js"></div>
+  <div class="scanlines"></div>
 
-    <section class="hero container">
-        <div data-aos="zoom-in">
-            <div class="tech-icons">
-                <i class="fab fa-python gradient-text floating"></i>
-                <i class="fab fa-java gradient-text floating" style="animation-delay: 0.5s"></i>
-            </div>
-            <h1 class="glow gradient-text" style="font-size: 4.5rem">NeuroSpaceX</h1>
-            <h2 data-aos="fade-up" class="gradient-text" style="font-size: 2.5rem">AI Spam Destroyer</h2>
-            <p data-aos="fade-up" data-aos-delay="200" style="margin: 2rem 0; font-size: 1.2rem">
-                🚀 Neural Network trained on 5M+ messages<br>
-                ⚡ Real-time processing | 🛡️ 99.5% Accuracy
-            </p>
-            
-            <div class="social-links">
-                <a href="https://ru-spam.ru" class="social-link" target="_blank">
-                    <i class="fas fa-rocket"></i> Official Site
-                </a>
-                <a href="https://t.me/ruSpamNS_bot" class="social-link" target="_blank">
-                    <i class="fab fa-telegram-plane"></i> Telegram Bot
-                </a>
-                <a href="https://t.me/spaceneuro" class="social-link" target="_blank">
-                    <i class="fas fa-broadcast-tower"></i> News Channel
-                </a>
-                <a href="https://t.me/Venuslaboratory" class="social-link" target="_blank">
-                    <i class="fas fa-users"></i> Community
-                </a>
-            </div>
-        </div>
-    </section>
+  <!-- HERO SECTION -->
+  <section class="hero container" data-aos="zoom-in">
+    <div class="tech-icons">
+      <i class="fab fa-python"></i>
+      <i class="fab fa-java"></i>
+    </div>
+    <h1 style="font-size: 4rem;">NEUROSPACEX</h1>
+    <h2 style="font-size: 2rem; color: var(--secondary);">AI SPAM DESTROYER</h2>
+    <p style="font-size: 1.2rem; line-height: 1.5; margin-top: 1rem;">
+      ▸ Neural Network trained on 5M+ messages<br>
+      ▸ Real-time processing<br>
+      ▸ 99.5% Accuracy
+    </p>
+    <div class="social-links">
+      <a href="https://ru-spam.ru" class="social-link pixel-border">
+        <i class="fas fa-rocket"></i> Official Site
+      </a>
+      <a href="https://t.me/ruSpamNS_bot" class="social-link pixel-border">
+        <i class="fab fa-telegram-plane"></i> Telegram Bot
+      </a>
+      <a href="https://t.me/spaceneuro" class="social-link pixel-border">
+        <i class="fas fa-broadcast-tower"></i> News Channel
+      </a>
+      <a href="https://t.me/Venuslaboratory" class="social-link pixel-border">
+        <i class="fas fa-users"></i> Community
+      </a>
+    </div>
+  </section>
 
-    <section class="container" data-aos="fade-up">
-        <h2 class="gradient-text" style="font-size: 2.8rem; margin-bottom: 3rem">Technology Stack</h2>
-        <div class="skills-grid">
-            <div class="project-card">
-                <h3><i class="fas fa-microchip gradient-text"></i> Core Technologies</h3>
-                <ul style="margin: 1.5rem 0; list-style: none">
-                    <li style="padding: 0.8rem 0">▸ Python 3.11</li>
-                    <li style="padding: 0.8rem 0">▸ Aiogram 3.0</li>
-                    <li style="padding: 0.8rem 0">▸ FastAPI & Flask</li>
-                    <li style="padding: 0.8rem 0">▸ Django Admin</li>
-                </ul>
-            </div>
+  <!-- TECH STACK SECTION -->
+  <section class="container" data-aos="fade-up">
+    <h2 style="font-size: 2rem; margin-bottom: 3rem; color: var(--primary);">TECH STACK</h2>
+    <div class="skills-grid">
+      <div class="project-card">
+        <div class="pixel-corner pixel-corner-tl"></div>
+        <div class="pixel-corner pixel-corner-tr"></div>
+        <div class="pixel-corner pixel-corner-bl"></div>
+        <div class="pixel-corner pixel-corner-br"></div>
+        <h3><i class="fas fa-microchip"></i> CORE TECHNOLOGIES</h3>
+        <ul style="margin: 1.5rem 0; list-style: none; line-height: 1.6;">
+          <li>▸ Python 3.11</li>
+          <li>▸ Aiogram 3.0</li>
+          <li>▸ FastAPI &amp; Flask</li>
+          <li>▸ Django Admin</li>
+        </ul>
+      </div>
+      <div class="project-card">
+        <div class="pixel-corner pixel-corner-tl"></div>
+        <div class="pixel-corner pixel-corner-tr"></div>
+        <div class="pixel-corner pixel-corner-bl"></div>
+        <div class="pixel-corner pixel-corner-br"></div>
+        <h3><i class="fas fa-brain"></i> ML INFRASTRUCTURE</h3>
+        <ul style="margin: 1.5rem 0; list-style: none; line-height: 1.6;">
+          <li>▸ PyTorch with CUDA</li>
+          <li>▸ Transformers</li>
+          <li>▸ Hugging Face</li>
+          <li>▸ ONNX Runtime</li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
-            <div class="project-card">
-                <h3><i class="fas fa-brain gradient-text"></i> ML Infrastructure</h3>
-                <ul style="margin: 1.5rem 0; list-style: none">
-                    <li style="padding: 0.8rem 0">▸ PyTorch with CUDA</li>
-                    <li style="padding: 0.8rem 0">▸ Transformers</li>
-                    <li style="padding: 0.8rem 0">▸ Hugging Face</li>
-                    <li style="padding: 0.8rem 0">▸ ONNX Runtime</li>
-                </ul>
-            </div>
-        </div>
-    </section>
+  <!-- LIVE STATS SECTION -->
+  <section class="container" data-aos="fade-up">
+    <h2 style="font-size: 2rem; margin-bottom: 3rem; color: var(--primary);">LIVE STATS</h2>
+    <div class="stats-grid">
+      <div class="stat-box pixel-border">
+        <div class="stat-number">5M+</div>
+        <div class="stat-label">Messages Analyzed</div>
+      </div>
+      <div class="stat-box pixel-border">
+        <div class="stat-number">99.5%</div>
+        <div class="stat-label">Accuracy</div>
+      </div>
+      <div class="stat-box pixel-border">
+        <div class="stat-number">24/7</div>
+        <div class="stat-label">Uptime</div>
+      </div>
+    </div>
+  </section>
 
-    <section class="container" data-aos="fade-up">
-        <h2 class="gradient-text" style="font-size: 2.8rem; margin-bottom: 3rem">Live Stats</h2>
-        <div class="stats-grid">
-            <div class="stat-box">
-                <div class="stat-number gradient-text">5M+</div>
-                <div class="stat-label">Messages Analyzed</div>
-            </div>
-            <div class="stat-box">
-                <div class="stat-number gradient-text">99.5%</div>
-                <div class="stat-label">Accuracy</div>
-            </div>
-            <div class="stat-box">
-                <div class="stat-number gradient-text">24/7</div>
-                <div class="stat-label">Uptime</div>
-            </div>
-        </div>
-    </section>
-
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init({duration: 1000, once: true});
-        particlesJS('particles-js', {
-            particles: {
-                number: {value: 120},
-                color: {value: ['var(--primary)', 'var(--secondary)']},
-                shape: {type: 'circle'},
-                opacity: {value: 0.7},
-                size: {value: 3},
-                move: {
-                    enable: true,
-                    speed: 1.5,
-                    direction: 'none',
-                    random: true,
-                    straight: false,
-                    out_mode: 'bounce'
-                }
-            },
-            interactivity: {
-                events: {
-                    onhover: {enable: true, mode: 'repulse'},
-                    onclick: {enable: true, mode: 'push'}
-                }
-            }
-        });
-    </script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 800,
+      once: true,
+      easing: 'ease-in-out-back'
+    });
+  </script>
 </body>
 </html>
