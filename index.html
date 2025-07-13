@@ -1,313 +1,215 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NeuroSpaceX | AI Anti-Spam</title>
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet" />
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-  <style>
-    :root {
-      --primary: #00ff00;
-      --secondary: #ff00ff;
-      --bg: #000;
-      --card-bg: #1a1a1a;
-      --text: #fff;
-    }
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'VT323', monospace;
-      image-rendering: pixelated;
-    }
-    body {
-      background: var(--bg);
-      color: var(--text);
-      overflow-x: hidden;
-      background-image: linear-gradient(to right, rgba(0,255,0,0.1) 1px, transparent 1px), linear-gradient(to bottom, rgba(0,255,0,0.1) 1px, transparent 1px);
-      background-size: 10px 10px;
-    }
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 2rem;
-    }
-    h1, h2, h3 {
-      font-family: 'Press Start 2P', cursive;
-      text-transform: uppercase;
-      text-align: center;
-    }
-    @keyframes pixel-glitch {
-      0% { transform: translate(0, 0); }
-      20% { transform: translate(-2px, 2px); }
-      40% { transform: translate(2px, -2px); }
-      60% { transform: translate(-2px, 2px); }
-      80% { transform: translate(2px, -2px); }
-      100% { transform: translate(0, 0); }
-    }
-    @keyframes pixel-flicker {
-      0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
-      20%, 24%, 55% { opacity: 0.4; }
-    }
-    @keyframes corner-wiggle {
-      0%, 100% { transform: translate(0, 0); }
-      50% { transform: translate(2px, -2px); }
-    }
-    @keyframes heroIntro {
-      from { opacity: 0; transform: translateY(20px) scale(0.95); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
-    }
-    @keyframes iconPulse {
-      0% { transform: scale(1); filter: drop-shadow(0 0 5px var(--primary)); }
-      50% { transform: scale(1.1); filter: drop-shadow(0 0 10px var(--secondary)); }
-      100% { transform: scale(1); filter: drop-shadow(0 0 5px var(--primary)); }
-    }
-    @keyframes btnHover {
-      from { transform: translateY(0); }
-      to { transform: translateY(-5px); }
-    }
-    .pixel-border {
-      border: 3px solid var(--primary);
-      position: relative;
-      box-shadow: 5px 5px 0 var(--secondary);
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .pixel-border:hover {
-      transform: translate(-3px, -3px);
-      box-shadow: 3px 3px 0 var(--secondary);
-      animation: pixel-glitch 0.3s ease-in-out;
-    }
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      border-bottom: 3px solid var(--primary);
-      text-align: center;
-      gap: 1.5rem;
-      animation: heroIntro 1s ease-out;
-      padding: 0 1rem;
-    }
-    .tech-icons {
-      display: flex;
-      gap: 1.5rem;
-      justify-content: center;
-      font-size: 3rem;
-      filter: drop-shadow(0 0 5px var(--primary));
-    }
-    .tech-icons i:hover {
-      animation: iconPulse 1.5s infinite;
-    }
-    .social-links {
-      display: flex;
-      gap: 1rem;
-      margin-top: 2rem;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    .social-link {
-      padding: 1rem 1.5rem;
-      border: 2px solid var(--primary);
-      background: var(--card-bg);
-      color: var(--primary);
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      transition: background 0.3s, color 0.3s, transform 0.3s;
-    }
-    .social-link:hover {
-      background: var(--primary);
-      color: var(--bg);
-      animation: btnHover 0.3s forwards;
-    }
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      margin: 4rem 0;
-    }
-    .project-card {
-      background: var(--card-bg);
-      padding: 2rem;
-      border: 3px solid var(--primary);
-      position: relative;
-      transition: transform 0.2s;
-      overflow: hidden;
-    }
-    .project-card:hover {
-      transform: translateY(-5px);
-    }
-    .project-card::before {
-      content: '';
-      position: absolute;
-      top: 5px;
-      left: 5px;
-      right: 5px;
-      bottom: 5px;
-      border: 1px solid var(--secondary);
-      pointer-events: none;
-    }
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-      margin-top: 3rem;
-    }
-    .stat-box {
-      text-align: center;
-      padding: 2rem;
-      border: 3px solid var(--primary);
-      background: var(--card-bg);
-      position: relative;
-    }
-    .stat-number {
-      font-size: 3rem;
-      font-family: 'Press Start 2P', cursive;
-      color: var(--primary);
-      text-shadow: 0 0 10px var(--primary);
-    }
-    .stat-label {
-      margin-top: 1rem;
-      font-size: 1.2rem;
-    }
-    @keyframes scanline {
-      0% { transform: translateY(-100%); }
-      100% { transform: translateY(100%); }
-    }
-    .scanlines {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(to bottom, transparent 50%, rgba(0,255,0,0.1) 51%, transparent 51%);
-      background-size: 100% 4px;
-      animation: scanline 4s linear infinite;
-      pointer-events: none;
-      z-index: 999;
-    }
-    .pixel-corner {
-      position: absolute;
-      width: 10px;
-      height: 10px;
-      background: var(--primary);
-      animation: corner-wiggle 1s ease-in-out infinite;
-    }
-    .pixel-corner-tl { top: -3px; left: -3px; }
-    .pixel-corner-tr { top: -3px; right: -3px; }
-    .pixel-corner-bl { bottom: -3px; left: -3px; }
-    .pixel-corner-br { bottom: -3px; right: -3px; }
-    .hero h1 {
-      font-size: 4rem;
-      animation: pixel-flicker 2s infinite;
-    }
-    .hero h2 {
-      font-size: 2rem;
-      color: var(--secondary);
-    }
-    .hero p {
-      font-size: 1.2rem;
-      line-height: 1.5;
-    }
-    @media (max-width: 600px) {
-      .container { padding: 1rem; }
-      h1 { font-size: 2.5rem; }
-      h2 { font-size: 1.5rem; }
-      .tech-icons { font-size: 2.5rem; }
-      .social-link { padding: 0.8rem 1.2rem; }
-      .project-card, .stat-box { padding: 1.5rem; }
-      .hero p { font-size: 1rem; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Портфолио - Python Developer</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="mobile.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="scanlines"></div>
-  <section class="hero container" data-aos="zoom-in">
-    <div class="tech-icons">
-      <i class="fab fa-python"></i>
-      <i class="fab fa-java"></i>
+    <div class="game-container">
+        <div class="background-grid"></div>
+        <div class="fire-particles"></div>
+        
+        <header class="header">
+            <div class="tetris-logo">
+                <div class="tetris-block t-block"></div>
+                <h1>ПОРТФОЛИО</h1>
+            </div>
+            <nav class="nav">
+                <div class="nav-item" data-section="about">О МНЕ</div>
+                <div class="nav-item" data-section="skills">НАВЫКИ</div>
+                <div class="nav-item" data-section="projects">ПРОЕКТЫ</div>
+                <div class="nav-item" data-section="contact">КОНТАКТЫ</div>
+            </nav>
+        </header>
+
+        <main class="main-content">
+            <section id="about" class="section active">
+                <div class="tetris-container">
+                    <div class="falling-blocks">
+                        <div class="tetris-block i-block"></div>
+                        <div class="tetris-block o-block"></div>
+                        <div class="tetris-block t-block"></div>
+                    </div>
+                    <div class="content-box">
+                        <h2 class="glitch" data-text="ПРИВЕТ, Я РАЗРАБОТЧИК">ПРИВЕТ, Я РАЗРАБОТЧИК</h2>
+                        <div class="pixel-avatar">
+                            <div class="avatar-pixel"></div>
+                        </div>
+                        <p class="type-text">
+                            Мне 17 лет и я увлеченный Python разработчик 🐍<br>
+                            Также знаю Java и немного Kotlin ☕<br>
+                            Больше всего люблю Data Science и ML-инженеринг 🤖<br>
+                            Создаю умные решения для реальных проблем ⚡
+                        </p>
+                        <div class="stats-board">
+                            <div class="stat-item">
+                                <span class="stat-label">УРОВЕНЬ</span>
+                                <span class="stat-value">17</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">ОПЫТ</span>
+                                <span class="stat-value">ML/DS</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">ЯЗЫК</span>
+                                <span class="stat-value">PYTHON</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="skills" class="section">
+                <div class="tetris-container">
+                    <h2>МОИ НАВЫКИ</h2>
+                    <div class="skills-tetris">
+                        <div class="skill-block python">
+                            <div class="skill-icon">🐍</div>
+                            <div class="skill-name">PYTHON</div>
+                            <div class="skill-level">██████████</div>
+                        </div>
+                        <div class="skill-block java">
+                            <div class="skill-icon">☕</div>
+                            <div class="skill-name">JAVA</div>
+                            <div class="skill-level">███████░░░</div>
+                        </div>
+                        <div class="skill-block kotlin">
+                            <div class="skill-icon">🎯</div>
+                            <div class="skill-name">KOTLIN</div>
+                            <div class="skill-level">██████░░░░</div>
+                        </div>
+                        <div class="skill-block ml">
+                            <div class="skill-icon">🤖</div>
+                            <div class="skill-name">ML/DS</div>
+                            <div class="skill-level">█████████░</div>
+                        </div>
+                        <div class="skill-block android">
+                            <div class="skill-icon">📱</div>
+                            <div class="skill-name">ANDROID</div>
+                            <div class="skill-level">███████░░░</div>
+                        </div>
+                        <div class="skill-block nlp">
+                            <div class="skill-icon">💬</div>
+                            <div class="skill-name">NLP</div>
+                            <div class="skill-level">████████░░</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="projects" class="section">
+                <div class="tetris-container">
+                    <h2>МОИ ПРОЕКТЫ</h2>
+                    <div class="projects-grid">
+                        <div class="project-card main-project">
+                            <div class="project-header">
+                                <div class="project-icon">🛡️</div>
+                                <h3>АНТИСПАМ БОТ</h3>
+                                <div class="project-status">★ ГЛАВНЫЙ ПРОЕКТ</div>
+                            </div>
+                            <div class="project-description">
+                                <p>Телеграм бот с огромным количеством функций и собственной моделью против спама на основе RuBERT</p>
+                                <div class="tech-stack">
+                                    <span class="tech">PYTHON</span>
+                                    <span class="tech">RUBERT</span>
+                                    <span class="tech">NLP</span>
+                                    <span class="tech">TELEGRAM API</span>
+                                </div>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://ru-spam.ru" target="_blank" class="project-link">
+                                    <span>🌐 ПОДРОБНЕЕ</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="project-card">
+                            <div class="project-header">
+                                <div class="project-icon">🔄</div>
+                                <h3>КОНВЕРТЕР ВЕЛИЧИН</h3>
+                                <div class="project-status">📱 ANDROID APP</div>
+                            </div>
+                            <div class="project-description">
+                                <p>Мое первое Android приложение для конвертации различных величин. Написано когда только начинал программировать</p>
+                                <div class="tech-stack">
+                                    <span class="tech">KOTLIN</span>
+                                    <span class="tech">ANDROID</span>
+                                    <span class="tech">GOOGLE PLAY</span>
+                                </div>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://play.google.com/store/apps/details?id=com.totoshkus.converter" target="_blank" class="project-link">
+                                    <span>📱 GOOGLE PLAY</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="project-card coming-soon">
+                            <div class="project-header">
+                                <div class="project-icon">🚀</div>
+                                <h3>НОВЫЕ ПРОЕКТЫ</h3>
+                                <div class="project-status">🔮 СКОРО</div>
+                            </div>
+                            <div class="project-description">
+                                <p>Работаю над новыми интересными проектами в области ML и Data Science...</p>
+                                <div class="loading-bar">
+                                    <div class="loading-progress"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="contact" class="section">
+                <div class="tetris-container">
+                    <h2>СВЯЗАТЬСЯ СО МНОЙ</h2>
+                    <div class="contact-game">
+                    <div class="contact-info">
+                        <div class="contact-item" data-contact="email">
+                            <div class="contact-icon">📧</div>
+                            <div class="contact-text">totoshkus@gmail.com</div>
+                        </div>
+                        <div class="contact-item" data-contact="telegram">
+                            <div class="contact-icon">💬</div>
+                            <div class="contact-text">@device_api</div>
+                        </div>
+                        <div class="contact-item" data-contact="channel">
+                            <div class="contact-icon">�</div>
+                            <div class="contact-text">Telegram канал</div>
+                        </div>
+                        <div class="contact-item" data-contact="github">
+                            <div class="contact-icon">🐙</div>
+                            <div class="contact-text">GITHUB</div>
+                        </div>
+                    </div>
+                        <div class="contact-message">
+                            <p>Готов к новым вызовам и интересным проектам!</p>
+                            <div class="pixel-heart">💜</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="tetris-footer-blocks">
+                    <div class="tetris-block mini i-block"></div>
+                    <div class="tetris-block mini o-block"></div>
+                    <div class="tetris-block mini t-block"></div>
+                </div>
+                <p>&copy; 2024 Python Developer Portfolio</p>
+            </div>
+        </footer>
     </div>
-    <h1>NEUROSPACEX</h1>
-    <h2>AI SPAM DESTROYER</h2>
-    <p>
-      ▸ Neural Network trained on 5M+ messages<br>
-      ▸ Real-time processing<br>
-      ▸ 99.5% Accuracy
-    </p>
-    <div class="social-links">
-      <a href="https://ru-spam.ru" class="social-link pixel-border" data-aos="fade-up">
-        <i class="fas fa-rocket"></i> Official Site
-      </a>
-      <a href="https://t.me/ruSpamNS_bot" class="social-link pixel-border" data-aos="fade-up" data-aos-delay="100">
-        <i class="fab fa-telegram-plane"></i> Telegram Bot
-      </a>
-      <a href="https://t.me/spaceneuro" class="social-link pixel-border" data-aos="fade-up" data-aos-delay="200">
-        <i class="fas fa-broadcast-tower"></i> News Channel
-      </a>
-      <a href="https://t.me/Venuslaboratory" class="social-link pixel-border" data-aos="fade-up" data-aos-delay="300">
-        <i class="fas fa-users"></i> Community
-      </a>
-    </div>
-  </section>
-  <section class="container" data-aos="fade-up">
-    <h2 style="color: var(--primary); margin-bottom: 3rem;">TECH STACK</h2>
-    <div class="skills-grid">
-      <div class="project-card" data-aos="flip-left">
-        <div class="pixel-corner pixel-corner-tl"></div>
-        <div class="pixel-corner pixel-corner-tr"></div>
-        <div class="pixel-corner pixel-corner-bl"></div>
-        <div class="pixel-corner pixel-corner-br"></div>
-        <h3><i class="fas fa-microchip"></i> CORE TECHNOLOGIES</h3>
-        <ul style="margin: 1.5rem 0; list-style: none; line-height: 1.6;">
-          <li>▸ Python 3.11</li>
-          <li>▸ Aiogram 3.0</li>
-          <li>▸ FastAPI &amp; Flask</li>
-          <li>▸ Django Admin</li>
-        </ul>
-      </div>
-      <div class="project-card" data-aos="flip-right">
-        <div class="pixel-corner pixel-corner-tl"></div>
-        <div class="pixel-corner pixel-corner-tr"></div>
-        <div class="pixel-corner pixel-corner-bl"></div>
-        <div class="pixel-corner pixel-corner-br"></div>
-        <h3><i class="fas fa-brain"></i> ML INFRASTRUCTURE</h3>
-        <ul style="margin: 1.5rem 0; list-style: none; line-height: 1.6;">
-          <li>▸ PyTorch with CUDA</li>
-          <li>▸ Transformers</li>
-          <li>▸ Hugging Face</li>
-          <li>▸ ONNX Runtime</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-  <section class="container" data-aos="fade-up">
-    <h2 style="color: var(--primary); margin-bottom: 3rem;">LIVE STATS</h2>
-    <div class="stats-grid">
-      <div class="stat-box pixel-border" data-aos="zoom-in">
-        <div class="stat-number">5M+</div>
-        <div class="stat-label">Messages Analyzed</div>
-      </div>
-      <div class="stat-box pixel-border" data-aos="zoom-in" data-aos-delay="150">
-        <div class="stat-number">99.5%</div>
-        <div class="stat-label">Accuracy</div>
-      </div>
-      <div class="stat-box pixel-border" data-aos="zoom-in" data-aos-delay="300">
-        <div class="stat-number">24/7</div>
-        <div class="stat-label">Uptime</div>
-      </div>
-    </div>
-  </section>
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script>
-    AOS.init({
-      duration: 800,
-      once: true,
-      easing: 'ease-in-out-back'
-    });
-  </script>
+
+    <script src="script.js"></script>
 </body>
 </html>
